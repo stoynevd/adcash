@@ -1,6 +1,6 @@
 <?php
 
-function removeBadWords($text, array $badWords)
+function replace_dirty_words($text, array $badWords)
 {
 
     try {
@@ -22,7 +22,7 @@ function adjustBadWords($text, $badWords)
 
     foreach ($badWords as $badWord) {
 
-        $badWord = '/' . $badWord . '?\w+/m';
+        $badWord = '/(?i)' . $badWord . '?\w+/m';
 
         preg_match_all($badWord, $text, $matches);
 
@@ -40,4 +40,4 @@ function adjustBadWords($text, $badWords)
 
 }
 
-echo removeBadWords("You piece of fucking shit, fuck you", ['fuck', 'shit']);
+echo replace_dirty_words("I am a fucking genius and I don't give a fuck.", ['fuck']);
